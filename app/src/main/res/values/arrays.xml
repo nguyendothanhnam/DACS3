@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="icon_options">
+        <item>@drawable/category</item>
+        <item>@drawable/dropdown</item>
+        <item>@drawable/plane</item>
+    </string-array>
+</resources>

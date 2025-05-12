@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@drawable/background">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/appLogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/logoText"
+        android:src="@drawable/expense_logo2"
+        android:layout_marginBottom="24dp"/>
+
+    <LinearLayout
+        android:layout_width="340dp"
+        android:layout_height="490dp"
+        android:orientation="vertical"
+        android:padding="50dp"
+
+        android:background="@drawable/rounded_background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:text="@string/loginText"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_margin="10dp"
+            android:textColorHint="#093030">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailInput"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:inputType="textEmailAddress"
+                android:hint="Email"
+                android:background="@drawable/rounded_edittext"
+                android:textColorHint="#093030"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <!-- Error Text for Email -->
+        <TextView
+            android:id="@+id/emailErrorText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invalid email format"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            android:textSize="10sp"
+            android:layout_marginHorizontal="16dp" />
+
+
+        <!-- Password Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:endIconMode="password_toggle"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:textColorHint="#093030">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Mật khẩu"
+                android:background="@drawable/rounded_edittext"
+                android:textColorHint="#093030"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Error Text for Password -->
+        <TextView
+            android:id="@+id/passwordErrorText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password must be at least 6 characters"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            android:textSize="10sp"
+            android:layout_marginHorizontal="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="60px"
+            >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/loginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loginText"
+                android:backgroundTint="#03A3FF"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_margin="10dp"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    <!-- Extra Options -->
+    <TextView
+        android:id="@+id/noAccountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chưa có tài khoản?"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"
+        android:gravity="center" />
+
+    <!-- Sign-up Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#DFF7E2"
+        android:textColor="#0E3E3E"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="Đăng ký"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center" />
+
+    <!-- Social Login Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="24dp">
+
+        <!-- Facebook Login Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/facebookLoginButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            app:icon="@drawable/facebook_logo"
+            app:iconTint="#FDF7F7"
+            app:iconGravity="start"
+            app:iconSize="24dp"
+            android:background="@drawable/circle_background"
+            android:contentDescription="@string/login_with_facebook"
+            android:text="@string/facebook"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            style="@style/Widget.Material3.Button.Outlined" />
+
+        <!-- Google Login Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/googleLoginButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            app:icon="@drawable/google_logo"
+            app:iconTint="#FDF7F7"
+            app:iconGravity="start"
+            app:iconSize="24dp"
+            android:background="@drawable/circle_background"
+            android:contentDescription="@string/login_with_google"
+            android:text="@string/google"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            style="@style/Widget.Material3.Button.Outlined" />
+    </LinearLayout>
+</LinearLayout>

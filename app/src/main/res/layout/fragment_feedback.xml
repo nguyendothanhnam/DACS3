@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="16dp"
+        android:background="@drawable/rounded_background">
+
+    <!-- Feedback Input Section -->
+    <EditText
+            android:id="@+id/feedbackContentInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your feedback"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:textColor="@color/white"
+            android:minHeight="100dp"
+            android:padding="8dp" />
+
+    <Button
+            android:id="@+id/submitFeedbackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_gravity="end"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/design_default_color_primary"
+            android:textColor="@android:color/white" />
+
+    <!-- Feedback History Section -->
+    <TextView
+            android:id="@+id/feedbackHistoryTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Feedback History"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="24dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/feedbackRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+</LinearLayout>

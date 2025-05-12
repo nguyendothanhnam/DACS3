@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:padding="16dp"
+        >
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_card_background_transactions"
+                android:padding="16dp"
+                android:gravity="center"
+                >
+
+
+            <TextView
+                    android:id="@+id/totalIncome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng Thu Nhập"
+                    android:textSize="18sp"
+                    android:textColor="#093030"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/totalIncomeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$7,783.00"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#1FC812"
+                    />
+
+
+        </LinearLayout>
+        <!-- Financial Summary Section -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    android:gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/rounded_card_background_transactions">
+
+                <ImageView
+                        android:id="@+id/stonkLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:contentDescription="@string/logoText"
+                        android:src="@drawable/stonk"
+                        android:layout_marginBottom="1dp"/>
+
+                <TextView
+                        android:id="@+id/incomeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thu Nhập"
+                        android:textSize="18sp"
+                        android:textColor="#093030"
+                        />
+
+                <TextView
+                        android:id="@+id/incomeValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$7,783.00"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#1FC812"
+                        />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    android:gravity="center"
+                    android:background="@drawable/rounded_card_background_transactions">
+
+                <ImageView
+                        android:id="@+id/losingLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:contentDescription="@string/logoText"
+                        android:src="@drawable/losing"
+                        android:layout_marginBottom="1dp"
+                        android:tint="@color/orange"/>
+
+                <TextView
+                        android:id="@+id/expenseLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chi Phí"
+                        android:textSize="18sp"
+                        android:textColor="#093030"
+                        />
+
+                <TextView
+                        android:id="@+id/expenseValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-$1,187.40"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/orange"/>
+            </LinearLayout>
+        </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addTransactionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="16dp"
+                android:src="@drawable/edit"
+                android:contentDescription="Add Item"
+                app:backgroundTint="@color/default_color" />
+        <!-- Recent Transactions Section -->
+        <TextView
+                android:id="@+id/recentTransactionsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lịch Sử Giao Dịch "
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:layout_marginBottom="8dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/transactionsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:padding="8dp"
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                android:background="@drawable/rounded_background"/>
+        <TextView
+            android:id="@+id/emptyView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Empty"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

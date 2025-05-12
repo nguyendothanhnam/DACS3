@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+            android:padding="10dp"
+            android:background="#423269"
+             >
+
+    <!-- Category Selector -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Transaction"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="#CC84AFD9"
+        android:layout_margin="15dp"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+
+
+        <Spinner
+            android:id="@+id/transactionCategorySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_background"
+            android:backgroundTint="@color/white"
+            android:padding="5dp" />
+
+        <EditText
+            android:id="@+id/transactionAmountInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/edittext_background"
+            android:hint="enter amount"
+            android:inputType="text|numberDecimal"
+            android:padding="8dp" />
+
+        <EditText
+                android:id="@+id/transactionDescriptionInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/edittext_background"
+                android:hint="enter description"
+                android:inputType="text"
+                android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/transactionDateInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/edittext_background"
+            android:focusable="false"
+            android:hint="enter date (YYYY-MM-DD)"
+            android:padding="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end">
+            <!-- Cancel Button -->
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:backgroundTint="@android:color/darker_gray"
+                android:text="Cancel"
+                android:textColor="@android:color/white" />
+            <!-- Save Button -->
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="5dp"
+                android:backgroundTint="@color/green"
+                android:text="Save"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Transaction Amount -->
+
+    <!-- Transaction Description -->
+
+    <!-- Transaction Date -->
+
+</LinearLayout>

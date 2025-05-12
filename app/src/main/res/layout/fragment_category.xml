@@ -1,0 +1,159 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:padding="16dp"
+
+            tools:ignore="ScrollViewCount">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:background="@drawable/rounded_card_background">
+
+            <TextView
+                    android:id="@+id/incomeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thu Nhập"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+
+            <TextView
+                    android:id="@+id/incomeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$7,783.00"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/green"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:background="@drawable/rounded_card_background">
+
+            <TextView
+                    android:id="@+id/expenseLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng Chi Phí"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+
+            <TextView
+                    android:id="@+id/expenseValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-$1,187.40"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/orange"/>
+        </LinearLayout>
+    </LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center">
+
+            <!-- Progress Bar Percentage -->
+            <TextView
+                    android:id="@+id/progressPercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30%"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold"/>
+
+            <!-- Horizontal ProgressBar -->
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="27dp"
+                    android:progress="30"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progress_bar_custom"/>
+
+            <!-- Goal Description -->
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/progressGoal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Goal: $20,000.00"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginTop="8dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+<LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="16dp"
+        android:background="@drawable/rounded_card_background">
+
+    <!-- Title -->
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Danh Mục"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginBottom="16dp" />
+
+    <!-- RecyclerView for Categories -->
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="8dp"
+            android:background="@drawable/rounded_background"
+            android:scrollbars="vertical" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:src="@drawable/edit"
+            android:contentDescription="Add Item"
+            app:backgroundTint="@color/default_color" />
+
+</LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

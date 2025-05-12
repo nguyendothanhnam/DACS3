@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="nav_item_color">#FFFFFFFF</color>
+    <color name="blue">#0041FF</color>
+    <color name="light_gray">#E0CBCB</color>
+    <color name="beige">#DBB5B3</color>
+    <color name="red">#F44336</color>
+    <color name="green">#5FF436</color>
+    <color name="primary">#3665F4</color>
+    <color name="bottom_nav_color">#6200EE</color>
+    <color name="gray">#D9B1B0</color>
+    <color name="purple_500">#423269</color>
+    <color name="selector_bottom_nav">#000000</color>
+    <color name="teal_700">#00796B</color>
+    <color name="teal_200">#80CBC4</color>
+    <color name="orange">#FFA500</color>
+    <color name="focus_color">#00D09E</color>
+    <color name="default_color">#DFF7E2</color>
+    <color name="circleColor">#6DB6FE</color>
+    <color name="progressColor">#0068FF</color>
+    <color name="labelColor">#F1FFF3</color>
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="cardStroke">#E0E0E0</color>
+    <color name="iconTint">#1E88E5</color>
+    <color name="primaryText">#212121</color>
+    <color name="dark_background">#1E1E2C</color> <!-- Hoặc màu tối bạn muốn -->
+
+</resources>

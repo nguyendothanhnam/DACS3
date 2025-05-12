@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Expense_MDC</string>
+    <string name="login_screen">Login Screen</string>
+    <string name="add_nav_bottom">Add</string>
+    <string name="home_nav_bottom">Home</string>
+    <string name="transactions_nav_bottom">Transactions</string>
+    <string name="settings_nav_bottom">Settings</string>
+    <string name="loginText">Đăng nhập</string>
+    <string name="logoText">Logo</string>
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="facebook">Facebook</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="google">Google</string>
+</resources>

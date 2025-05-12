@@ -1,0 +1,39 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center">
+
+    <!-- Text: Current Progress -->
+    <TextView
+            android:id="@+id/progressPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30%"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold" />
+
+    <!-- ProgressBar -->
+    <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:progress="30"
+            android:max="100"
+            android:progressDrawable="@drawable/progress_bar_custom" />
+
+    <!-- Goal Text -->
+    <TextView
+            android:id="@+id/progressGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$20,000.00"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="8dp" />
+</LinearLayout>

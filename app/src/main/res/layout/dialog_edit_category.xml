@@ -1,0 +1,70 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+    android:background="#423269"
+        >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Category"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        />
+    <!-- Category Name -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="#CC84AFD9">
+
+        <EditText
+                android:id="@+id/dialogCategoryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Category Name"
+                android:background="@drawable/edittext_background"
+                android:inputType="text"
+                android:autofillHints="name" />
+
+        <Spinner
+            android:id="@+id/dialogIconSelector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_background"
+            android:padding="10dp"
+            android:backgroundTint="#AEE2BC"
+            android:layout_marginTop="16dp"
+            android:entries="@array/icon_options" />
+
+        <EditText
+            android:id="@+id/dialogCategoryDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edittext_background"
+            android:autofillHints="description"
+            android:hint="Category Description"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Save"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <!-- Icon Selector (Dropdown) -->
+
+    <!-- Category Description -->
+
+</LinearLayout>
