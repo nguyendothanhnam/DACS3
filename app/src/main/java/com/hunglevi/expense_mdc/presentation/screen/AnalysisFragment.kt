@@ -62,6 +62,7 @@ class AnalysisFragment : Fragment() {
                     // Update financial summary UI
                     binding.incomeValue.text = "$${String.format("%.2f", totalIncome)}"
                     binding.expenseValue.text = "$${String.format("%.2f", totalExpense)}"
+                    // Update goal progress
                     val sharedPref = requireContext().getSharedPreferences("BudgetPrefs", Context.MODE_PRIVATE)
                     val savedBudget = sharedPref.getFloat("USER_BUDGET", 0f)
                     val goalAmount = savedBudget.toDouble()
@@ -71,10 +72,18 @@ class AnalysisFragment : Fragment() {
 
                     val currentProgress = calculateProgress(currentAmount, goalAmount)
 
-                    binding.progressBar.max = 100
-                    binding.progressBar.progress = currentProgress
-                    binding.progressPercentage.text = String.format("%d%%", progress)
-                    binding.progressGoal.text = "Goal: $${String.format("%.2f", goalAmount)}"
+                    if (goalAmount <= 0) {
+                        binding.progressBar.visibility = View.GONE
+                        binding.progressPercentage.text = "Please set a budget"
+                        binding.progressGoal.text = ""
+                    } else {
+                        val currentProgress = calculateProgress(currentAmount, goalAmount)
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.progressBar.max = 100
+                        binding.progressBar.progress = currentProgress
+                        binding.progressPercentage.text = String.format("%d%%", currentProgress)
+                        binding.progressGoal.text = "Goal: $${String.format("%.2f", goalAmount)}"
+                    }
                 }
             }
         }

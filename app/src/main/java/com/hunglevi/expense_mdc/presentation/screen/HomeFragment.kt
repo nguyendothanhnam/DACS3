@@ -3,6 +3,8 @@ package com.hunglevi.expense_mdc.presentation.screen
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +19,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hunglevi.expense_mdc.LoginActivity
 import com.hunglevi.expense_mdc.R
 import com.hunglevi.expense_mdc.adapter.TransactionsAdapter
 import com.hunglevi.expense_mdc.data.dao.AppDatabase
@@ -48,7 +51,9 @@ class HomeFragment : Fragment() {
     }
 
     private lateinit var transactionAdapter: TransactionsAdapter
-
+    private lateinit var sharedPref: SharedPreferences
+    private lateinit var sharedPrefListener: SharedPreferences.OnSharedPreferenceChangeListener
+    private var userId: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,14 +65,27 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val sharedPref = context?.getSharedPreferences("UserPrefs", MODE_PRIVATE)
-        val userId = sharedPref?.getInt("USER_ID", -1)
-        transactionViewModel.setUserId(userId ?: -1) // Set user ID in ViewModel
-        // Initialize the adapter with an empty list
+        val userPref = context?.getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val userId = userPref?.getInt("USER_ID", -1) ?: -1
+        if (userId == -1) {
+            Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            requireActivity().finish()
+            return
+        }
+        transactionViewModel.setUserId(userId)
+
+        // Khởi tạo SharedPreferences và listener
+        sharedPref = requireContext().getSharedPreferences("BudgetPrefs", Context.MODE_PRIVATE)
+        sharedPrefListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == "USER_BUDGET_$userId") {
+                loadBudget() // Cập nhật UI khi USER_BUDGET của userId này thay đổi
+            }
+        }
+        sharedPref.registerOnSharedPreferenceChangeListener(sharedPrefListener)
+
         setupAdapter()
         loadBudget()
-
-        // Set up RecyclerView with the adapter
         binding.transactionsRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = transactionAdapter
@@ -75,10 +93,8 @@ class HomeFragment : Fragment() {
         setupTransactionList()
         setupFinancialSummary()
         binding.editGoalButton.setOnClickListener {
-            // Implement the functionality here
             openEditGoalDialog()
         }
-
     }
 
     private fun setupFinancialSummary() {
@@ -94,18 +110,19 @@ class HomeFragment : Fragment() {
 
                     // Update goal progress
                     val currentAmount = totalIncome + totalExpense
-                    val sharedPref = requireContext().getSharedPreferences("BudgetPrefs", Context.MODE_PRIVATE)
                     val savedBudget = sharedPref.getFloat("USER_BUDGET", 0f)
-                    val goalAmount = 20000.0
-                    binding.progressGoal.text = "Goal: $${String.format("%.2f", savedBudget)}"
-                    val progress = ((currentAmount / goalAmount) * 100).coerceIn(0.0, 100.0).toInt()
+                    val goalAmount = savedBudget.toDouble()
 
-                    val currentProgress = calculateProgress(currentAmount, goalAmount)
-
-                    binding.progressBar.max = 100
-                    binding.progressBar.progress = currentProgress
-                    binding.progressPercentage.text = String.format("%d%%", progress)
-                    binding.progressGoal.text = "Goal: $${String.format("%.2f", goalAmount)}"
+                    if (goalAmount <= 0) {
+                        binding.progressBar.visibility = View.GONE
+                        binding.progressPercentage.text = "Please set a budget"
+                    } else {
+                        val currentProgress = calculateProgress(currentAmount, goalAmount)
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.progressBar.max = 100
+                        binding.progressBar.progress = currentProgress
+                        binding.progressPercentage.text = String.format("%d%%", currentProgress)
+                    }
                 }
             }
         }
@@ -255,7 +272,6 @@ class HomeFragment : Fragment() {
                     val goalAmount = goalInput.toDoubleOrNull()
                     if (goalAmount != null && goalAmount > 0) {
                         updateBudget(goalAmount) // Save budget update
-                        binding.progressGoal.text = "Goal: $${String.format("%.2f", goalAmount)}"
                         Toast.makeText(requireContext(), "Budget updated successfully!", Toast.LENGTH_SHORT).show()
                         dialog.dismiss()
                     } else {

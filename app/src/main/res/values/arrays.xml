@@ -1,7 +1,13 @@
 <resources>
     <string-array name="icon_options">
         <item>@drawable/category</item>
-        <item>@drawable/dropdown</item>
+        <item>@drawable/food</item>
+        <item>@drawable/shopping</item>
+        <item>@drawable/pet</item>
+        <item>@drawable/study</item>
+        <item>@drawable/healthy</item>
+        <item>@drawable/water</item>
+        <item>@drawable/salary</item>
         <item>@drawable/plane</item>
     </string-array>
 </resources>
