@@ -1,61 +1,91 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:padding="16dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#423269"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <!-- Transaction Amount Input -->
-    <EditText
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Edit Transaction"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="#CC84AFD9"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
             android:id="@+id/transactionAmountInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_background"
             android:hint="Enter Amount"
             android:inputType="text|numberDecimal"
             android:padding="8dp" />
 
-    <!-- Transaction Description Input -->
-    <EditText
+        <EditText
             android:id="@+id/transactionDescriptionInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_background"
             android:hint="Enter Description"
             android:inputType="text"
             android:padding="8dp" />
 
-    <!-- Transaction Date Input -->
-    <EditText
+        <EditText
             android:id="@+id/transactionDateInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/edittext_background"
             android:hint="Enter Date (YYYY-MM-DD)"
             android:inputType="date"
             android:padding="8dp" />
 
-    <!-- Buttons for Actions -->
-    <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="end"
+            android:orientation="horizontal"
             android:paddingTop="16dp">
 
-        <!-- Cancel Button -->
-        <Button
+            <!-- Cancel Button -->
+            <Button
                 android:id="@+id/cancelButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancel"
                 android:backgroundTint="@android:color/darker_gray"
+                android:text="Cancel"
                 android:textColor="@android:color/white" />
 
-        <!-- Save Button -->
-        <Button
+            <!-- Save Button -->
+            <Button
                 android:id="@+id/saveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save"
                 android:layout_marginStart="8dp"
-                android:backgroundTint="@android:color/holo_green_dark"
+                android:backgroundTint="@color/focus_color"
+                android:text="Save"
                 android:textColor="@android:color/white" />
+        </LinearLayout>
     </LinearLayout>
+
+    <!-- Transaction Description Input -->
+
+    <!-- Transaction Date Input -->
+
+    <!-- Buttons for Actions -->
 </LinearLayout>

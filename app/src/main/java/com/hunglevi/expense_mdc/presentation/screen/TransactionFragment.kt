@@ -40,7 +40,8 @@ class TransactionFragment : Fragment() {
     private val transactionViewModel: TransactionViewModel by viewModels {
         ViewModelFactory(
             transactionRepository = TransactionRepository(
-                AppDatabase.getInstance(requireContext()).transactionDao() // Use TransactionDao here
+                AppDatabase.getInstance(requireContext())
+                    .transactionDao() // Use TransactionDao here
             )
         )
     }
@@ -92,8 +93,10 @@ class TransactionFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 transactionViewModel.transactions.collect { transactions ->
-                    val totalIncome = transactions.filter { it.type == "Income" }.sumOf { it.amount }
-                    val totalExpense = transactions.filter { it.type == "Expense" }.sumOf { it.amount }
+                    val totalIncome =
+                        transactions.filter { it.type == "Income" }.sumOf { it.amount }
+                    val totalExpense =
+                        transactions.filter { it.type == "Expense" }.sumOf { it.amount }
 
                     // Update financial summary UI
                     binding.incomeValue.text = "$${String.format("%.2f", totalIncome)}"
@@ -117,7 +120,12 @@ class TransactionFragment : Fragment() {
             val datePickerDialog = DatePickerDialog(
                 requireContext(),
                 { _, selectedYear, selectedMonth, selectedDay ->
-                    val formattedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
+                    val formattedDate = String.format(
+                        "%04d-%02d-%02d",
+                        selectedYear,
+                        selectedMonth + 1,
+                        selectedDay
+                    )
                     editText.setText(formattedDate)
                 },
                 year, month, day
@@ -168,7 +176,11 @@ class TransactionFragment : Fragment() {
             .setPositiveButton("Yes") { dialog, _ ->
                 // Trigger deletion via ViewModel
                 transactionViewModel.deleteTransaction(transaction)
-                Toast.makeText(requireContext(), "Transaction deleted successfully!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Transaction deleted successfully!",
+                    Toast.LENGTH_SHORT
+                ).show()
                 dialog.dismiss()
             }
             .setNegativeButton("No") { dialog, _ ->
@@ -181,12 +193,12 @@ class TransactionFragment : Fragment() {
 
     private fun openEditTransactionDialog(transaction: Transaction) {
         // Inflate the dialog layout
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_transaction, null)
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_transaction, null)
 
         // Create an AlertDialog
         val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
-            .setTitle("Edit Transaction")
             .setCancelable(false)
 
         val dialog = dialogBuilder.create()
@@ -222,7 +234,8 @@ class TransactionFragment : Fragment() {
                 Toast.makeText(requireContext(), "Transaction updated!", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             } else {
-                Toast.makeText(requireContext(), "Please enter valid details!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please enter valid details!", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -251,7 +264,8 @@ class TransactionFragment : Fragment() {
     }
 
     private fun openAddTransactionDialog(userIdAdd: Int?) {
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_transaction, null)
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_transaction, null)
 
         // Create an AlertDialog
         val dialogBuilder = AlertDialog.Builder(requireContext())
@@ -275,7 +289,8 @@ class TransactionFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             categoryViewModel.categories.collect { categoryList ->
                 categories = categoryList.map { it.name } // Update categories dynamically
-                val categoryAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categories)
+                val categoryAdapter =
+                    ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categories)
                 categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 categorySpinner.adapter = categoryAdapter
             }

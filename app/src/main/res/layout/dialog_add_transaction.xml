@@ -2,8 +2,8 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical"
-            android:padding="10dp"
-            android:background="#423269"
+                android:padding="10dp"
+                android:background="#423269"
              >
 
     <!-- Category Selector -->
@@ -33,8 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_background"
-            android:backgroundTint="@color/white"
+            android:background="@drawable/spinner"
             android:padding="5dp" />
 
         <EditText
@@ -88,7 +87,7 @@
                 android:layout_gravity="end"
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="5dp"
-                android:backgroundTint="@color/green"
+                android:backgroundTint="@color/focus_color"
                 android:text="Save"
                 android:textColor="@color/black" />
         </LinearLayout>

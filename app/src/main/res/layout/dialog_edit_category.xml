@@ -37,9 +37,8 @@
             android:id="@+id/dialogIconSelector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_background"
+            android:background="@drawable/spinner"
             android:padding="10dp"
-            android:backgroundTint="#AEE2BC"
             android:layout_marginTop="16dp"
             android:entries="@array/icon_options" />
 
@@ -59,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Save"
-            android:backgroundTint="@color/green"
+            android:backgroundTint="@color/focus_color"
             android:textColor="@color/white" />
     </LinearLayout>
 

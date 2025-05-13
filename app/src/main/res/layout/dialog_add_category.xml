@@ -1,36 +1,98 @@
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#423269"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <!-- Category Selector -->
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Add Transaction"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="#CC84AFD9"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@drawable/rounded_background">
+        android:padding="16dp">
 
-    <!-- Category Name -->
-    <EditText
-            android:id="@+id/dialogCategoryName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Category Name"
-            android:inputType="text"
-            android:autofillHints="name" />
-
-    <!-- Icon Selector (Dropdown) -->
-    <Spinner
+        <!-- Icon Selector (Dropdown) -->
+        <Spinner
             android:id="@+id/dialogIconSelector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/spinner"
             android:entries="@array/icon_options"
-            android:layout_marginTop="16dp"
-             />
+            android:padding="7dp" />
 
-    <!-- Category Description -->
-    <EditText
+        <!-- Category Name -->
+        <EditText
+            android:id="@+id/dialogCategoryName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:autofillHints="name"
+            android:background="@drawable/edittext_background"
+            android:hint="enter amount"
+            android:inputType="text|numberDecimal"
+            android:padding="8dp" />
+
+        <!-- Category Description -->
+        <EditText
             android:id="@+id/dialogCategoryDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Category Description"
-            android:inputType="text"
+            android:layout_margin="10dp"
             android:autofillHints="description"
-            android:layout_marginTop="16dp" />
+            android:background="@drawable/edittext_background"
+            android:hint="enter description"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <!-- Buttons Layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+
+            <!-- Cancel Button -->
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:backgroundTint="@android:color/darker_gray"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:text="Cancel"
+                android:textColor="@android:color/white" />
+
+            <!-- Save Button -->
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginStart="5dp"
+                android:backgroundTint="@color/focus_color"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:text="Save"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

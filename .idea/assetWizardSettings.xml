@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialiconstwotone/home/twotone_home_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/filter_alt/baseline_filter_alt_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="home2" />
+                            <entry key="outputName" value="ic_filter" />
                             <entry key="sourceFile" value="E:\Demo_dacs3\Expense_Kotlin\Expense_MDC" />
                           </map>
                         </option>

@@ -38,7 +38,8 @@ class HomeFragment : Fragment() {
     private val transactionViewModel: TransactionViewModel by viewModels {
         ViewModelFactory(
             transactionRepository = TransactionRepository(
-                AppDatabase.getInstance(requireContext()).transactionDao() // Use Activity context here
+                AppDatabase.getInstance(requireContext())
+                    .transactionDao() // Use Activity context here
             )
         )
     }
@@ -101,8 +102,10 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 transactionViewModel.transactions.collect { transactions ->
-                    val totalIncome = transactions.filter { it.type == "Income" }.sumOf { it.amount }
-                    val totalExpense = transactions.filter { it.type == "Expense" }.sumOf { it.amount }
+                    val totalIncome =
+                        transactions.filter { it.type == "Income" }.sumOf { it.amount }
+                    val totalExpense =
+                        transactions.filter { it.type == "Expense" }.sumOf { it.amount }
 
                     // Update financial summary UI
                     binding.incomeValue.text = "$${String.format("%.2f", totalIncome)}"
@@ -135,7 +138,9 @@ class HomeFragment : Fragment() {
             transactions = emptyList(),
             onEdit = { transaction -> openEditTransactionDialog(transaction) },
             onDelete = { transaction -> showDeleteConfirmation(transaction) },
-            fetchCategoryName = { categoryId -> categoryMap[categoryId] ?: "" }, // Fetch category name dynamically
+            fetchCategoryName = { categoryId ->
+                categoryMap[categoryId] ?: ""
+            }, // Fetch category name dynamically
             fetchCategoryIcon = { categoryId ->
                 val category = categoryViewModel.getCategoryById(categoryId)
                 category?.icon ?: "category.png"
@@ -154,6 +159,7 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
     private fun showDeleteConfirmation(transaction: Transaction) {
         AlertDialog.Builder(requireContext())
             .setTitle("Delete Transaction")
@@ -161,7 +167,11 @@ class HomeFragment : Fragment() {
             .setPositiveButton("Yes") { dialog, _ ->
                 // Trigger deletion via ViewModel
                 transactionViewModel.deleteTransaction(transaction)
-                Toast.makeText(requireContext(), "Transaction deleted successfully!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Transaction deleted successfully!",
+                    Toast.LENGTH_SHORT
+                ).show()
                 dialog.dismiss()
             }
             .setNegativeButton("No") { dialog, _ ->
@@ -176,7 +186,8 @@ class HomeFragment : Fragment() {
         if (goalAmount <= 0) {
             throw IllegalArgumentException("Goal amount must be greater than zero.")
         }
-        val progress = ((currentAmount / goalAmount) * 100).coerceIn(0.0, 100.0) // Ensure between 0% and 100%
+        val progress =
+            ((currentAmount / goalAmount) * 100).coerceIn(0.0, 100.0) // Ensure between 0% and 100%
         return progress.toInt()
     }
 
@@ -199,7 +210,8 @@ class HomeFragment : Fragment() {
 
     private fun openEditTransactionDialog(transaction: Transaction) {
         // Inflate the dialog layout
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_transaction, null)
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_transaction, null)
 
         // Create an AlertDialog
         val dialogBuilder = AlertDialog.Builder(requireContext())
@@ -237,7 +249,8 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "Transaction updated!", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             } else {
-                Toast.makeText(requireContext(), "Please enter valid details!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please enter valid details!", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -247,11 +260,13 @@ class HomeFragment : Fragment() {
 
         dialog.show()
     }
+
     private fun loadBudget() {
         val sharedPref = requireContext().getSharedPreferences("BudgetPrefs", Context.MODE_PRIVATE)
         val savedBudget = sharedPref.getFloat("USER_BUDGET", 0f)
         binding.progressGoal.text = "Goal: $${String.format("%.2f", savedBudget)}"
     }
+
     private fun updateBudget(goalAmount: Double) {
         val sharedPref = requireContext().getSharedPreferences("BudgetPrefs", Context.MODE_PRIVATE)
         sharedPref.edit().putFloat("USER_BUDGET", goalAmount.toFloat()).apply()
@@ -261,30 +276,43 @@ class HomeFragment : Fragment() {
     private fun openEditGoalDialog() {
         val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_goal, null)
         val goalInputField = dialogView.findViewById<EditText>(R.id.goalAmountInput)
+        val saveButton = dialogView.findViewById<Button>(R.id.saveButton)
+        val cancelButton = dialogView.findViewById<Button>(R.id.cancelButton)
 
         val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
-            .setTitle("Edit Financial Goal")
-            .setPositiveButton("Save") { dialog, _ ->
-                val goalInput = goalInputField?.text.toString().trim()
 
-                if (goalInput.isNotBlank()) {
-                    val goalAmount = goalInput.toDoubleOrNull()
-                    if (goalAmount != null && goalAmount > 0) {
-                        updateBudget(goalAmount) // Save budget update
-                        Toast.makeText(requireContext(), "Budget updated successfully!", Toast.LENGTH_SHORT).show()
-                        dialog.dismiss()
-                    } else {
-                        Toast.makeText(requireContext(), "Invalid amount! Please enter a valid budget value.", Toast.LENGTH_SHORT).show()
-                    }
+        val dialog = dialogBuilder.create()
+
+        // Sự kiện cho nút Save
+        saveButton.setOnClickListener {
+            val goalInput = goalInputField?.text.toString().trim()
+            if (goalInput.isNotBlank()) {
+                val goalAmount = goalInput.toDoubleOrNull()
+                if (goalAmount != null && goalAmount > 0) {
+                    updateBudget(goalAmount)
+                    Toast.makeText(requireContext(), "Budget updated successfully!", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
                 } else {
-                    Toast.makeText(requireContext(), "Please enter a goal amount!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Invalid amount! Please enter a valid budget value.", Toast.LENGTH_SHORT).show()
                 }
+            } else {
+                Toast.makeText(requireContext(), "Please enter a goal amount!", Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
-                dialog.dismiss()
-            }
+        }
 
-        dialogBuilder.create().show()
+        // Sự kiện cho nút Cancel
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
+        // Điều chỉnh kích thước dialog
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.9).toInt(), // 90% chiều rộng màn hình
+            ViewGroup.LayoutParams.WRAP_CONTENT // Chiều cao tự động
+        )
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent) // Loại bỏ nền mặc định của dialog
     }
 }

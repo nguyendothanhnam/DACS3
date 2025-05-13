@@ -1,0 +1,10 @@
+<resources>
+    <declare-styleable name="CustomBarChartView">
+        <attr name="axisColor" format="color" />
+        <attr name="incomeBarColor" format="color" />
+        <attr name="expenseBarColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="barWidth" format="dimension" />
+        <attr name="barSpacing" format="dimension" />
+    </declare-styleable>
+</resources>

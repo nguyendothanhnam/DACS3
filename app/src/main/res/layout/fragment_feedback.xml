@@ -1,47 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:padding="16dp"
-        android:background="@drawable/rounded_background">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_background"
+    android:padding="24dp">
 
-    <!-- Feedback Input Section -->
-    <EditText
-            android:id="@+id/feedbackContentInput"
+    <!-- App Name Header -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Feedback"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Feedback Input Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#1A1E33"
+        android:layout_marginBottom="24dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your feedback"
-            android:inputType="textMultiLine"
-            android:gravity="top"
-            android:textColor="@color/white"
-            android:minHeight="100dp"
-            android:padding="8dp" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-    <Button
-            android:id="@+id/submitFeedbackButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:layout_gravity="end"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/design_default_color_primary"
-            android:textColor="@android:color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="We value your input"
+                android:textColor="#9AE6B4"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Stylized EditText -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your feedback"
+                android:textColorHint="#80FFFFFF"
+                app:hintTextColor="#80FFFFFF"
+                app:boxStrokeColor="#6A7BD9"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/feedbackContentInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:gravity="top"
+                    android:minLines="4"
+                    android:textColor="#FFFFFF" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Submit Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submitFeedbackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="16dp"
+                app:cornerRadius="24dp"
+                android:backgroundTint="#6A2AFF" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <!-- Feedback History Section -->
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <TextView
             android:id="@+id/feedbackHistoryTitle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Your Feedback History"
             android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:layout_marginTop="24dp" />
+            android:textSize="20sp"
+            android:textColor="#FFFFFF" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/filterButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Filter"
+            android:textColor="#FFFFFF"
+            app:strokeColor="#6A7BD9"
+            app:icon="@drawable/ic_filter"
+            app:iconTint="#FFFFFF"
+            app:cornerRadius="18dp" />
+    </LinearLayout>
+
+    <!-- Recycler View for Feedback Items -->
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/feedbackRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+        android:id="@+id/feedbackRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp" />
 
+    <!-- Empty State Message (initially gone) -->
+    <LinearLayout
+        android:id="@+id/emptyStateContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_feedback"
+            android:alpha="0.7"
+            app:tint="#6A7BD9" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No feedback yet"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your submitted feedback will appear here"
+            android:textColor="#80FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
 </LinearLayout>

@@ -3,85 +3,85 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/background"
     android:gravity="center"
-    android:padding="16dp"
-    android:background="@drawable/background">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <!-- Logo -->
     <ImageView
         android:id="@+id/appLogo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/circle_shape"
+        android:clipToOutline="true"
         android:contentDescription="@string/logoText"
-        android:src="@drawable/expense_logo2"
-        android:layout_marginBottom="24dp"/>
+        android:src="@drawable/expense_logo2" />
 
     <LinearLayout
-        android:layout_width="340dp"
-        android:layout_height="490dp"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
         android:orientation="vertical"
-        android:padding="50dp"
 
-        android:background="@drawable/rounded_background">
+        android:padding="30dp">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
+            android:layout_gravity="center"
             android:text="@string/loginText"
-            android:textStyle="bold"/>
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
             android:layout_margin="10dp"
+            android:layout_marginBottom="12dp"
             android:textColorHint="#093030">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailInput"
                 android:layout_width="match_parent"
                 android:layout_height="61dp"
-                android:inputType="textEmailAddress"
-                android:hint="Email"
                 android:background="@drawable/rounded_edittext"
-                android:textColorHint="#093030"
-                />
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#093030" />
         </com.google.android.material.textfield.TextInputLayout>
         <!-- Error Text for Email -->
         <TextView
             android:id="@+id/emailErrorText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:text="Invalid email format"
             android:textColor="@color/red"
-            android:visibility="gone"
             android:textSize="10sp"
-            android:layout_marginHorizontal="16dp" />
+            android:visibility="gone" />
 
 
         <!-- Password Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            app:endIconMode="password_toggle"
             android:layout_margin="10dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/rounded_edittext"
-            android:textColorHint="#093030">
+            android:textColorHint="#093030"
+            app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Mật khẩu"
                 android:background="@drawable/rounded_edittext"
-                android:textColorHint="#093030"
-                />
+                android:hint="Mật khẩu"
+                android:inputType="textPassword"
+                android:textColorHint="#093030" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Error Text for Password -->
@@ -89,31 +89,30 @@
             android:id="@+id/passwordErrorText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:text="Password must be at least 6 characters"
             android:textColor="@color/red"
-            android:visibility="gone"
             android:textSize="10sp"
-            android:layout_marginHorizontal="16dp" />
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_marginTop="60px"
-            >
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/loginButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/loginText"
-                android:backgroundTint="#03A3FF"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="20sp"
                 android:layout_margin="10dp"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#03A3FF"
+                android:text="@string/loginText"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
     <!-- Extra Options -->
@@ -121,67 +120,67 @@
         android:id="@+id/noAccountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chưa có tài khoản?"
-        android:textSize="16sp"
-        android:textColor="@android:color/white"
         android:layout_marginTop="16dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:text="Chưa có tài khoản?"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
 
     <!-- Sign-up Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signupButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#DFF7E2"
-        android:textColor="#0E3E3E"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:text="Đăng ký"
+        android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:layout_gravity="center" />
+        android:backgroundTint="#DFF7E2"
+        android:text="Đăng ký"
+        android:textColor="#0E3E3E"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <!-- Social Login Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
         android:gravity="center"
-        android:layout_marginTop="24dp">
+        android:orientation="horizontal">
 
         <!-- Facebook Login Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/facebookLoginButton"
+            style="@style/Widget.Material3.Button.Outlined"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            app:icon="@drawable/facebook_logo"
-            app:iconTint="#FDF7F7"
-            app:iconGravity="start"
-            app:iconSize="24dp"
             android:background="@drawable/circle_background"
             android:contentDescription="@string/login_with_facebook"
+            android:gravity="center"
             android:text="@string/facebook"
             android:textColor="@android:color/white"
-            android:gravity="center"
-            style="@style/Widget.Material3.Button.Outlined" />
+            app:icon="@drawable/facebook_logo"
+            app:iconGravity="start"
+            app:iconSize="24dp"
+            app:iconTint="#FDF7F7" />
 
         <!-- Google Login Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/googleLoginButton"
+            style="@style/Widget.Material3.Button.Outlined"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
-            app:icon="@drawable/google_logo"
-            app:iconTint="#FDF7F7"
-            app:iconGravity="start"
-            app:iconSize="24dp"
             android:background="@drawable/circle_background"
             android:contentDescription="@string/login_with_google"
+            android:gravity="center"
             android:text="@string/google"
             android:textColor="@android:color/white"
-            android:gravity="center"
-            style="@style/Widget.Material3.Button.Outlined" />
+            app:icon="@drawable/google_logo"
+            app:iconGravity="start"
+            app:iconSize="24dp"
+            app:iconTint="#FDF7F7" />
     </LinearLayout>
 </LinearLayout>

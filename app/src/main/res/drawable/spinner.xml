@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Nền tùy chỉnh -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#DFF7E2" /> <!-- Màu nền trắng -->
+            <corners android:radius="10dp" /> <!-- Bo góc 10dp -->
+            <stroke
+                android:width="2dp"
+                android:color="#DB5959" /> <!-- Viền xanh -->
+        </shape>
+    </item>
+    <!-- Mũi tên dropdown -->
+    <item
+        android:gravity="end|center_vertical"
+        android:right="10dp">
+        <bitmap
+            android:src="@android:drawable/arrow_down_float"
+            android:tint="#000000" /> <!-- Màu đỏ cho mũi tên -->
+    </item>
+</layer-list>
