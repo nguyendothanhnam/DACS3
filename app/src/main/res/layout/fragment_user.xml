@@ -1,23 +1,81 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:padding="16dp"
-        android:background="@drawable/rounded_background">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/network_background"
+    android:padding="16dp">
+
+    <!-- Title -->
     <TextView
-            android:id="@+id/userHistoryTitle"
+        android:id="@+id/userHistoryTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Quản lý người dùng"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:letterSpacing="0.02"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Search Bar Container -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/userHistoryTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quản lý người dùng"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:layout_marginTop="24dp" />
+            android:orientation="horizontal"
+            android:padding="12dp">
 
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/search"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="Search Icon"
+                app:tint="@color/secondary_text" />
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Tìm kiếm người dùng..."
+                android:background="@null"
+                android:textSize="16sp" 
+                android:textColor="@color/primary_text"
+                android:textColorHint="@color/secondary_text"
+                android:paddingStart="8dp"
+                android:imeOptions="actionSearch"
+                android:inputType="text" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/userRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+        android:id="@+id/userRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/searchCard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

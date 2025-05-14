@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/edittext_background"
-            android:hint="enter amount"
+            android:hint="Enter Amount"
             android:inputType="text|numberDecimal"
             android:padding="8dp" />
 
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/edittext_background"
-                android:hint="enter description"
+                android:hint="Enter Description"
                 android:inputType="text"
                 android:padding="8dp" />
 
@@ -63,7 +63,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/edittext_background"
             android:focusable="false"
-            android:hint="enter date (YYYY-MM-DD)"
+            android:hint="Enter Date (YYYY-MM-DD)"
             android:padding="8dp" />
 
         <LinearLayout

@@ -7,7 +7,7 @@
             <corners android:radius="10dp" /> <!-- Bo góc 10dp -->
             <stroke
                 android:width="2dp"
-                android:color="#DB5959" /> <!-- Viền xanh -->
+                android:color="#89BCDC" /> <!-- Viền xanh -->
         </shape>
     </item>
     <!-- Mũi tên dropdown -->
@@ -16,6 +16,6 @@
         android:right="10dp">
         <bitmap
             android:src="@android:drawable/arrow_down_float"
-            android:tint="#000000" /> <!-- Màu đỏ cho mũi tên -->
+            android:tint="#000000" />
     </item>
 </layer-list>

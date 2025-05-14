@@ -1,75 +1,79 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:padding="16dp"
-              >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <!-- Search Bar -->
     <EditText
-            android:id="@+id/searchBar"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="Tìm Kiếm"
-            android:background="@drawable/rounded_card_background_icon"
-            android:padding="12dp"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/rounded_card_background_icon"
+        android:hint="Tìm Kiếm"
+        android:padding="12dp"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <!-- Dropdown Menu -->
     <TextView
-            android:id="@+id/typeDropdown"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/rounded_card_background_icon"
-            android:padding="12dp"
-            android:hint="Loại"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:drawableEnd="@drawable/category" />
+        android:id="@+id/typeDropdown"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/rounded_card_background_icon"
+        android:drawableEnd="@drawable/category"
+        android:hint="Loại"
+        android:padding="12dp"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <!-- Date Picker -->
     <TextView
-            android:id="@+id/dateInput"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/rounded_card_background_icon"
-            android:padding="12dp"
-            android:hint="Ngày"
-            android:text="30 / APR / 2023"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:drawableEnd="@drawable/calendar" />
+        android:id="@+id/dateInput"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/rounded_card_background_icon"
+        android:drawableEnd="@drawable/calendar"
+        android:hint="Ngày"
+        android:padding="12dp"
+        android:layout_margin="10dp"
+        android:text="30 / APR / 2023"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
-    <!-- Report Type Selection -->
-    <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+<!--    &lt;!&ndash; Report Type Selection &ndash;&gt;-->
+<!--    <RadioGroup-->
+<!--        android:id="@+id/radioGroup"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
 
-        <RadioButton
-                android:id="@+id/radioIncome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thu Nhập"
-                android:textColor="@color/black" />
+<!--        <RadioButton-->
+<!--            android:id="@+id/radioIncome"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Thu Nhập"-->
+<!--            android:textColor="@color/black" />-->
 
-        <RadioButton
-                android:id="@+id/radioExpense"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chi Phí"
-                android:textColor="@color/black"
-                android:layout_marginStart="16dp" />
-    </RadioGroup>
+<!--        <RadioButton-->
+<!--            android:id="@+id/radioExpense"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:text="Chi Phí"-->
+<!--            android:textColor="@color/black" />-->
+<!--    </RadioGroup>-->
 
     <!-- Search Button -->
     <Button
-            android:id="@+id/searchButton"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Tìm Kiếm"
-            android:background="@drawable/rounded_card_background_icon"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+        android:id="@+id/searchButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/rounded_card_background_icon"
+        android:text="Tìm Kiếm"
+        android:layout_margin="8dp"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 </LinearLayout>

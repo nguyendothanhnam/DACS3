@@ -26,5 +26,7 @@
     <color name="iconTint">#1E88E5</color>
     <color name="primaryText">#212121</color>
     <color name="dark_background">#1E1E2C</color> <!-- Hoặc màu tối bạn muốn -->
-
+    <color name="background_light">#F5F7FA</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
 </resources>

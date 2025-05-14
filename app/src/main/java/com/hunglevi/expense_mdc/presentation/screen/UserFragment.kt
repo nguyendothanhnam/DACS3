@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +16,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hunglevi.expense_mdc.R
-import com.hunglevi.expense_mdc.adapter.FeedbackAdapter
 import com.hunglevi.expense_mdc.adapter.UserAdapter
 import com.hunglevi.expense_mdc.data.dao.AppDatabase
-import com.hunglevi.expense_mdc.data.model.Feedback
 import com.hunglevi.expense_mdc.data.model.User
-import com.hunglevi.expense_mdc.data.repository.FeedbackRepository
 import com.hunglevi.expense_mdc.data.repository.UserRepository
-import com.hunglevi.expense_mdc.databinding.FragmentFeedbackBinding
 import com.hunglevi.expense_mdc.databinding.FragmentUserBinding
-import com.hunglevi.expense_mdc.presentation.viewmodel.FeedbackViewModel
 import com.hunglevi.expense_mdc.presentation.viewmodel.UserViewModel
 import com.hunglevi.expense_mdc.presentation.viewmodel.ViewModelFactory
 import kotlinx.coroutines.launch
@@ -37,7 +34,6 @@ class UserFragment : Fragment() {
     private val userViewModel: UserViewModel by viewModels {
         ViewModelFactory(userRepository = UserRepository(AppDatabase.getInstance(requireContext()).userDao()))
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +51,7 @@ class UserFragment : Fragment() {
         userViewModel.setUserId(userId ?: -1)
 
         // Initialize the adapter
-        val userAdapter = UserAdapter(
+        userAdapter = UserAdapter(
             users = emptyList(), // Start with an empty list
             onItemClick = { user ->
                 println("Clicked on user: ${user.username}")
@@ -75,9 +71,20 @@ class UserFragment : Fragment() {
         // Observe user list and update the adapter dynamically
         viewLifecycleOwner.lifecycleScope.launch {
             userViewModel.users.collect { userList ->
-                userAdapter.updateUsers(userList) // Call updateUsers to refresh the list
+                userAdapter.updateUsers(userList) // Cập nhật danh sách đã được lọc từ ViewModel
             }
         }
+
+        // Add TextWatcher for search functionality
+        binding.searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                userViewModel.setSearchQuery(s.toString()) // Cập nhật query cho ViewModel
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
     }
 
     private fun openEditUserDialog(user: User) {
@@ -97,18 +104,18 @@ class UserFragment : Fragment() {
         emailInput.setText(user.email)
         roleInput.setText(user.role)
 
-
-
         dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Save") { _, _ ->
             val editedUsername = usernameInput.text.toString()
             val editedEmail = emailInput.text.toString()
+            val editedRole = roleInput.text.toString()
 
-            if (editedUsername.isNotBlank() && editedEmail.isNotBlank()) {
+            if (editedUsername.isNotBlank() && editedEmail.isNotBlank() && editedRole.isNotBlank()) {
                 val updatedUser = user.copy(
                     username = editedUsername,
-                    email = editedEmail
+                    email = editedEmail,
+                    role = editedRole
                 )
-                userViewModel.updateUser(updatedUser) // Update via ViewModel
+                userViewModel.updateUser(updatedUser)
                 Toast.makeText(requireContext(), "User updated successfully!", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "Please fill out all fields!", Toast.LENGTH_SHORT).show()
@@ -127,7 +134,7 @@ class UserFragment : Fragment() {
             .setTitle("Delete User")
             .setMessage("Are you sure you want to delete ${user.username}?")
             .setPositiveButton("Yes") { _, _ ->
-                userViewModel.deleteUser(user) // Delete via ViewModel
+                userViewModel.deleteUser(user)
                 Toast.makeText(requireContext(), "User deleted successfully!", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("No") { dialog, _ ->
@@ -138,7 +145,6 @@ class UserFragment : Fragment() {
     }
 
     private fun getUserId(): Int {
-        // Retrieve user ID from SharedPreferences or other sources
         val sharedPref = requireContext().getSharedPreferences("UserPrefs", MODE_PRIVATE)
         return sharedPref.getInt("USER_ID", -1)
     }
